@@ -111,3 +111,9 @@ end
 
 Este módulo define uma estrutura para representar medições e funções para converter entre centímetros e polegadas.
 
+## Referências 
+
+- [Site Elixir Org](https://elixir-lang.org/)
+- [Site Basic Elixir](https://elixirschool.com/pt/lessons/basics/basics/#)
+- [Elixir Language](https://pt.wikipedia.org/wiki/Elixir_(linguagem_de_programa%C3%A7%C3%A3o))
+- [Elixir Language](https://blog.rocketseat.com.br/elixir-por-tras-da-linguagem-de-programacao-brasileira/)
