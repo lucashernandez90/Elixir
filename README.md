@@ -109,6 +109,83 @@ defmodule Measurement do
 end
 ```
 
+## Parte 4 - Como funções são tratadas no Elixir?
+
+### Parte 4.1 - Função é um tipo?
+No Elixir, funções são realmente um tipo, representado pela estrutura Function. Elas podem ser armazenadas em variáveis e manipuladas como dados.
+
+```elixir
+minha_funcao = fn x -> x * 2 end
+IO.puts(minha_funcao.(10))
+```
+
+## 4.2 - Passagem de funções como parâmetro
+
+Como Elixir trata funções como valores, elas podem ser passadas como parâmetros para outras funções.
+
+```elixir
+defmodule Exemplo do
+  def aplicar_funcao(valor, funcao) do
+    funcao.(valor)
+  end
+end
+
+IO.puts(Exemplo.aplicar_funcao(5, fn x -> x + 3 end))
+```
+
+## Parte 5 - Funções de Alta Ordem e Polimorfismo
+
+### Parte 5.1 - Funções de Alta Ordem
+```elixir
+lista = [1, 2, 3, 4]
+Enum.map(lista, fn x -> x * 2 end) |> IO.inspect(label: "Dobrado")
+```
+
+### Parte 5.2 - Exemplos de Map, Reduce e Filter
+- `Map`: Aplica uma função a cada elemento da lista.
+- `Reduce`: Reduz a lista a um único valor.
+- `Filter`: Filtra elementos que satisfazem uma condição.
+
+```elixir
+lista = [1, 2, 3, 4, 5]
+
+# Map
+Enum.map(lista, fn x -> x * x end)
+
+# Reduce
+Enum.reduce(lista, 0, fn x, acc -> x + acc end)
+
+# Filter
+Enum.filter(lista, fn x -> rem(x, 2) == 0 end)
+```
+
+## Parte 6 - Funções Parciais e Currying
+
+### Parte 6.1 - Encadeamento de funções
+O Elixir usa o operador pipe `(|>)` para encadear funções, facilitando a leitura do código.
+
+```elixir
+lista = [1, 2, 3, 4, 5]
+lista
+|> Enum.map(&(&1 * 2))
+|> Enum.filter(&(&1 > 5))
+|> IO.inspect(label: "Resultado")
+```
+### Parte 6.2 - Funções Parciais
+
+Embora o Elixir não suporte currying diretamente como linguagens como Haskell, podemos criar funções parciais usando `fn`.
+
+```elixir
+# Função de adição
+adicao = fn a, b -> a + b end
+
+adicionar_cinco = fn x -> adicao.(5, x) end
+IO.puts(adicionar_cinco.(3))
+```
+
+
+Funções de alta ordem são funções que recebem outras funções como parâmetros ou retornam uma função. No Elixir, isso é comum com `Enum.map`, `Enum.reduce`, e `Enum.filter`.
+
 Este módulo define uma estrutura para representar medições e funções para converter entre centímetros e polegadas.
 
 ## Referências 
